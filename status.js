@@ -106,13 +106,13 @@ connection.on('data', function(response){
     VEL_Enu = dict['vel enu (m/s) rover'];
     if (VEL_Enu !== null) {
 	VEL_Enu_Split = VEL_Enu.split(",");
-    VEL_Enu_E = VEL_Enu_Split[0];
-    VEL_Enu_N = VEL_Enu_Split[1];
-    VEL_Enu_U = VEL_Enu_Split[2];
+    	VEL_Enu_E = VEL_Enu_Split[0];
+    	VEL_Enu_N = VEL_Enu_Split[1];
+    	VEL_Enu_U = VEL_Enu_Split[2];
 	} else { 
 	VEL_Enu_E = ("undefined");
-    VEL_Enu_N = ("undefined");
-    VEL_Enu_U = ("undefined");
+    	VEL_Enu_N = ("undefined");
+    	VEL_Enu_U = ("undefined");
 	};
 	//console.log(VEL_Enu_N);
 
@@ -220,62 +220,53 @@ connection.on('data', function(response){
              INPUT_Data_Rover_obs = INPUT_Data_Rover_obs_d [0];
              //console.log(INPUT_Data_Rover_obs);
              
-
              INPUT_Data_Rover_nav_b = INPUT_Data_Rover_nav_a.split('(');
              INPUT_Data_Rover_nav_c = INPUT_Data_Rover_nav_b[1];
              INPUT_Data_Rover_nav_d = INPUT_Data_Rover_nav_c.split(')');
              INPUT_Data_Rover_nav = INPUT_Data_Rover_nav_d [0];
              //console.log(INPUT_Data_Rover_nav);
              
-
              INPUT_Data_Rover_gnav_b = INPUT_Data_Rover_gnav_a.split('(');
              INPUT_Data_Rover_gnav_c = INPUT_Data_Rover_gnav_b[1];
              INPUT_Data_Rover_gnav_d = INPUT_Data_Rover_gnav_c.split(')');
              INPUT_Data_Rover_gnav = INPUT_Data_Rover_gnav_d [0];
              //console.log(INPUT_Data_Rover_gnav);
              
-
              INPUT_Data_Rover_ion_b = INPUT_Data_Rover_ion_a.split('(');
              INPUT_Data_Rover_ion_c = INPUT_Data_Rover_ion_b[1];
              INPUT_Data_Rover_ion_d = INPUT_Data_Rover_ion_c.split(')');
              INPUT_Data_Rover_ion = INPUT_Data_Rover_ion_d [0];
              //console.log(INPUT_Data_Rover_ion);
              
-
              INPUT_Data_Rover_sbs_b = INPUT_Data_Rover_sbs_a.split('(');
              INPUT_Data_Rover_sbs_c = INPUT_Data_Rover_sbs_b[1];
              INPUT_Data_Rover_sbs_d = INPUT_Data_Rover_sbs_c.split(')');
              INPUT_Data_Rover_sbs = INPUT_Data_Rover_sbs_d [0];
              //console.log(INPUT_Data_Rover_sbs);
              
-
              INPUT_Data_Rover_pos_b = INPUT_Data_Rover_pos_a.split('(');
              INPUT_Data_Rover_pos_c = INPUT_Data_Rover_pos_b[1];
              INPUT_Data_Rover_pos_d = INPUT_Data_Rover_pos_c.split(')');
              INPUT_Data_Rover_pos = INPUT_Data_Rover_pos_d [0];
              //console.log(INPUT_Data_Rover_pos);
              
-
              INPUT_Data_Rover_dgps_b = INPUT_Data_Rover_dgps_a.split('(');
              INPUT_Data_Rover_dgps_c = INPUT_Data_Rover_dgps_b[1];
              INPUT_Data_Rover_dgps_d = INPUT_Data_Rover_dgps_c.split(')');
              INPUT_Data_Rover_dgps = INPUT_Data_Rover_dgps_d [0];
              //console.log(INPUT_Data_Rover_dgps);
              
-
              INPUT_Data_Rover_ssr_b = INPUT_Data_Rover_ssr_a.split('(');
              INPUT_Data_Rover_ssr_c = INPUT_Data_Rover_ssr_b[1];
              INPUT_Data_Rover_ssr_d = INPUT_Data_Rover_ssr_c.split(')');
              INPUT_Data_Rover_ssr = INPUT_Data_Rover_ssr_d [0];
              //console.log(INPUT_Data_Rover_ssr);
-             
-
+           
              INPUT_Data_Rover_err_b = INPUT_Data_Rover_err_a.split('(');
              INPUT_Data_Rover_err_c = INPUT_Data_Rover_err_b[1];
              INPUT_Data_Rover_err_d = INPUT_Data_Rover_err_c.split(')');
              INPUT_Data_Rover_err = INPUT_Data_Rover_err_d [0];
              //console.log(INPUT_Data_Rover_err);
-
 
     //bytes in input buffer of input data base#
              INPUT_Data_Base = dict['# of input data base'];
@@ -314,8 +305,7 @@ connection.on('data', function(response){
              INPUT_Data_Base_ion_c = INPUT_Data_Base_ion_b[1];
              INPUT_Data_Base_ion_d = INPUT_Data_Base_ion_c.split(')');
              INPUT_Data_Base_ion = INPUT_Data_Base_ion_d [0];
-             //console.log(INPUT_Data_Base_ion);
-             
+             //console.log(INPUT_Data_Base_ion);            
 
              INPUT_Data_Base_sbs_b = INPUT_Data_Base_sbs_a.split('(');
              INPUT_Data_Base_sbs_c = INPUT_Data_Base_sbs_b[1];
@@ -323,28 +313,24 @@ connection.on('data', function(response){
              INPUT_Data_Base_sbs = INPUT_Data_Base_sbs_d [0];
              //console.log(INPUT_Data_Base_sbs);
              
-
              INPUT_Data_Base_pos_b = INPUT_Data_Base_pos_a.split('(');
              INPUT_Data_Base_pos_c = INPUT_Data_Base_pos_b[1];
              INPUT_Data_Base_pos_d = INPUT_Data_Base_pos_c.split(')');
              INPUT_Data_Base_pos = INPUT_Data_Base_pos_d [0];
              //console.log(INPUT_Data_Base_pos);
              
-
              INPUT_Data_Base_dgps_b = INPUT_Data_Base_dgps_a.split('(');
              INPUT_Data_Base_dgps_c = INPUT_Data_Base_dgps_b[1];
              INPUT_Data_Base_dgps_d = INPUT_Data_Base_dgps_c.split(')');
              INPUT_Data_Base_dgps = INPUT_Data_Base_dgps_d [0];
              //console.log(INPUT_Data_Base_dgps);
              
-
              INPUT_Data_Base_ssr_b = INPUT_Data_Base_ssr_a.split('(');
              INPUT_Data_Base_ssr_c = INPUT_Data_Base_ssr_b[1];
              INPUT_Data_Base_ssr_d = INPUT_Data_Base_ssr_c.split(')');
              INPUT_Data_Base_ssr = INPUT_Data_Base_ssr_d [0];
              //console.log(INPUT_Data_Base_ssr);
              
-
              INPUT_Data_Base_err_b = INPUT_Data_Base_err_a.split('(');
              INPUT_Data_Base_err_c = INPUT_Data_Base_err_b[1];
              INPUT_Data_Base_err_d = INPUT_Data_Base_err_c.split(')');
@@ -369,15 +355,13 @@ connection.on('data', function(response){
              INPUT_Data_corr_obs_c = INPUT_Data_corr_obs_b[1];
              INPUT_Data_corr_obs_d = INPUT_Data_corr_obs_c.split(')');
              INPUT_Data_corr_obs = INPUT_Data_corr_obs_d [0];
-             //console.log(INPUT_Data_corr_obs);
-             
+             //console.log(INPUT_Data_corr_obs);          
 
              INPUT_Data_corr_nav_b = INPUT_Data_corr_nav_a.split('(');
              INPUT_Data_corr_nav_c = INPUT_Data_corr_nav_b[1];
              INPUT_Data_corr_nav_d = INPUT_Data_corr_nav_c.split(')');
              INPUT_Data_corr_nav = INPUT_Data_corr_nav_d [0];
-             //console.log(INPUT_Data_corr_nav);
-             
+             //console.log(INPUT_Data_corr_nav);          
 
              INPUT_Data_corr_gnav_b = INPUT_Data_corr_gnav_a.split('(');
              INPUT_Data_corr_gnav_c = INPUT_Data_corr_gnav_b[1];
@@ -389,22 +373,19 @@ connection.on('data', function(response){
              INPUT_Data_corr_ion_c = INPUT_Data_corr_ion_b[1];
              INPUT_Data_corr_ion_d = INPUT_Data_corr_ion_c.split(')');
              INPUT_Data_corr_ion = INPUT_Data_corr_ion_d [0];
-             //console.log(INPUT_Data_corr_ion);
-             
+             //console.log(INPUT_Data_corr_ion);            
 
              INPUT_Data_corr_sbs_b = INPUT_Data_corr_sbs_a.split('(');
              INPUT_Data_corr_sbs_c = INPUT_Data_corr_sbs_b[1];
              INPUT_Data_corr_sbs_d = INPUT_Data_corr_sbs_c.split(')');
              INPUT_Data_corr_sbs = INPUT_Data_corr_sbs_d [0];
-             //console.log(INPUT_Data_corr_sbs);
-             
+             //console.log(INPUT_Data_corr_sbs);           
 
              INPUT_Data_corr_pos_b = INPUT_Data_corr_pos_a.split('(');
              INPUT_Data_corr_pos_c = INPUT_Data_corr_pos_b[1];
              INPUT_Data_corr_pos_d = INPUT_Data_corr_pos_c.split(')');
              INPUT_Data_corr_pos = INPUT_Data_corr_pos_d [0];
-             //console.log(INPUT_Data_corr_pos);
-             
+             //console.log(INPUT_Data_corr_pos);            
 
              INPUT_Data_corr_dgps_b = INPUT_Data_corr_dgps_a.split('(');
              INPUT_Data_corr_dgps_c = INPUT_Data_corr_dgps_b[1];
@@ -412,13 +393,11 @@ connection.on('data', function(response){
              INPUT_Data_corr_dgps = INPUT_Data_corr_dgps_d [0];
              //console.log(INPUT_Data_corr_dgps);
 
-
              INPUT_Data_corr_ssr_b = INPUT_Data_corr_ssr_a.split('(');
              INPUT_Data_corr_ssr_c = INPUT_Data_corr_ssr_b[1];
              INPUT_Data_corr_ssr_d = INPUT_Data_corr_ssr_c.split(')');
              INPUT_Data_corr_ssr = INPUT_Data_corr_ssr_d [0];
              //console.log(INPUT_Data_corr_ssr);
-
 
              INPUT_Data_corr_err_b = INPUT_Data_corr_err_a.split('(');
              INPUT_Data_corr_err_c = INPUT_Data_corr_err_b[1];
@@ -433,14 +412,6 @@ connection.on('data', function(response){
     //console.log(time_clock_rover);
     //var year = Date(getFullyear(time_clock_rover));
     //console.log(year);
-
-                     
-
-
-
-
-
-
 
   } 
 });
