@@ -2,7 +2,7 @@ var Telnet = require('telnet-client')
 var connection = new Telnet()
  
 var params = {
-  host: '185.112.115.234',
+  host: '000.000.000.000',
   port: 5000,
   //shellPrompt: '/ # ',
   shellPrompt: 'rtkrcv> ',
