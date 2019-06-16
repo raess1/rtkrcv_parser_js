@@ -1,8 +1,13 @@
+// app.js
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 var Telnet = require('telnet-client')
 var connection = new Telnet()
- 
+
 var params = {
-  host: '000.000.000.000',
+  host: '185.112.115.234',
   port: 5000,
   //shellPrompt: '/ # ',
   shellPrompt: 'rtkrcv> ',
@@ -14,6 +19,10 @@ var params = {
   waitfor: '\n' // mandatory for your 'send' to work (set those either here or in your exec_params!)
 }
 
+app.use(express.static(__dirname + '/node_modules'));
+app.get('/', function(req, res,next) {
+    res.sendFile(__dirname + '/index.html');
+});
 
 var dict = {};
 
@@ -78,10 +87,22 @@ connection.on('data', function(response){
 
   if (key in dict){
     //console.log('baseline:'+dict['baseline length float (m)']);
+    
+    function timerSolution() {
+  //console.log('TimerFunc');
+  Solution = dict['solution status'];
+  dict['Solution'] = Solution;
+  io.emit('solution', dict);  
+  setTimeout(timerSolution, 2000);
+	}
+
+setTimeout(timerSolution, 2000);
+
 
 
     //Split GDOP/PDOP/HDOP/VDOP in to diffrent parameters
     GPHV = dict['GDOP/PDOP/HDOP/VDOP'];
+    console.log(GPHV);
     GPHV_Split = GPHV.split(",");
     //console.log(GPHV_Split[0]);
     //console.log(GPHV_Split[1]);
@@ -90,8 +111,23 @@ connection.on('data', function(response){
     GDOP = GPHV_Split[0];
     PDOP = GPHV_Split[1];
     HDOP = GPHV_Split[2];
-    PDOP = GPHV_Split[3];
-    //console.log(PDOP)
+    VDOP = GPHV_Split[3];
+
+    //console.log(GDOP);
+    //console.log(PDOP);
+    //console.log(PDOP);
+
+function timerFunc() {
+  //console.log('TimerFunc');
+  dict['GDOP'] = GDOP;
+  dict['PDOP'] = PDOP;
+  dict['HDOP'] = HDOP;
+  dict['VDOP'] = VDOP;
+  io.emit('position', dict);  
+  setTimeout(timerFunc, 1000);
+}
+
+setTimeout(timerFunc, 1000);
 
     //pos xyz single (m) rover in to diffrent parameters#
     POS_Single = dict['pos xyz single (m) rover'];
@@ -101,16 +137,42 @@ connection.on('data', function(response){
     POS_Single_Z = POS_Single_Split[2];
     //console.log(POS_Single_Z);
 
+        //pos llh single (deg,m) rover in to diffrent parameters#
+    POS_Single_LLH = dict['pos llh single (deg,m) rover'];
+    //console.log(POS_Single_LLH);
+    POS_Single_LLH_Split = POS_Single_LLH.split(",");
+    console.log(POS_Single_LLH_Split);
+    POS_Single_LAT = POS_Single_LLH_Split[0];
+    POS_Single_LONG = POS_Single_LLH_Split[1];
+    POS_Single_H = POS_Single_LLH_Split[2];
+    //console.log(POS_Single_LAT);
+    //console.log(POS_Single_LONG);
+    //console.log(POS_Single_H);
+
+
+    function timerFunc2() {
+  //console.log('TimerFunc');
+  dict['POS_Single_LAT'] = POS_Single_LAT;
+  dict['POS_Single_LONG'] = POS_Single_LONG;
+  dict['POS_Single_H'] = POS_Single_H;
+  io.emit('POS_Single_LLH', dict);  
+  setTimeout(timerFunc2, 200);
+}
+
+setTimeout(timerFunc2, 200);
+
+
+
 
 	//Check if value is not empty. If its is skip split and return X
     VEL_Enu = dict['vel enu (m/s) rover'];
-    if (VEL_Enu !== null) {
-	VEL_Enu_Split = VEL_Enu.split(",");
+    if (VEL_Enu) {
+		VEL_Enu_Split = VEL_Enu.split(",");
     	VEL_Enu_E = VEL_Enu_Split[0];
     	VEL_Enu_N = VEL_Enu_Split[1];
     	VEL_Enu_U = VEL_Enu_Split[2];
 	} else { 
-	VEL_Enu_E = ("undefined");
+		VEL_Enu_E = ("undefined");
     	VEL_Enu_N = ("undefined");
     	VEL_Enu_U = ("undefined");
 	};
@@ -130,7 +192,9 @@ connection.on('data', function(response){
     POS_XYZ_Float_X = POS_XYZ_Float_Split[0];
     POS_XYZ_Float_Y = POS_XYZ_Float_Split[1];
     POS_XYZ_Float_Z = POS_XYZ_Float_Split[2];
-    console.log(POS_XYZ_Float_Z);
+    //console.log(POS_XYZ_Float_Z);
+
+   
 
      //pos xyz float std (m) rover in to diffrent parameters#
      POS_XYZ_Float_Std = dict['pos xyz float std (m) rover'];
@@ -412,6 +476,10 @@ connection.on('data', function(response){
     //console.log(time_clock_rover);
     //var year = Date(getFullyear(time_clock_rover));
     //console.log(year);
+ 
+    
+
+
 
   } 
 });
@@ -436,3 +504,10 @@ connection.on('close', function() {
 })
  
 connection.connect(params)
+
+
+
+
+
+
+server.listen(4200);
